@@ -496,14 +496,50 @@ body.light .btn.primary{background:#C47A10;color:#FFFFFF}
 .card:hover .card-checkbox{display:flex}
 .card.selected .card-checkbox{display:flex}
 .multiselect-mode .card{cursor:pointer;user-select:none}
-#bulk-bar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:10px 16px;display:none;align-items:center;gap:12px;z-index:500;box-shadow:0 8px 32px rgba(0,0,0,0.4);white-space:nowrap}
+#bulk-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:8px 10px;display:none;align-items:center;gap:8px;z-index:500;box-shadow:0 8px 32px rgba(0,0,0,0.4);white-space:nowrap}
 #bulk-bar.show{display:flex}
 #bulk-bar-count{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink)}
-#bulk-bucket-sel{font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;background:var(--surface3);border:1px solid var(--border2);border-radius:7px;color:var(--ink2);padding:5px 8px;cursor:pointer;outline:none}
-#bulk-assign-btn{font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:600;padding:6px 14px;background:var(--accent);color:#1A1810;border:none;border-radius:7px;cursor:pointer}
-body:not(.light) #bulk-assign-btn{color:#0F0E0C}
-#bulk-cancel-btn{font-family:'DM Sans',sans-serif;font-size:12.5px;padding:6px 10px;background:transparent;color:var(--ink3);border:1px solid var(--border2);border-radius:7px;cursor:pointer}
+.bulk-divider{width:1px;height:16px;background:var(--border2);flex-shrink:0}
+.bulk-sel-all-wrap{display:flex;align-items:center;cursor:pointer;flex-shrink:0}
+.bulk-sel-all-chk{width:15px;height:15px;cursor:pointer;margin:0;flex-shrink:0;appearance:none;-webkit-appearance:none;border:1.5px solid var(--border2);border-radius:4px;background:transparent;transition:background 0.15s,border-color 0.15s;position:relative}
+.bulk-sel-all-chk:checked{background:var(--accent);border-color:var(--accent)}
+.bulk-sel-all-chk:indeterminate{background:var(--accent);border-color:var(--accent)}
+.bulk-sel-all-chk:checked::after{content:'';position:absolute;inset:0;margin:auto;width:5px;height:8px;border:2px solid #fff;border-top:none;border-left:none;border-radius:0 2px 1px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.bulk-sel-all-chk:indeterminate::after{content:'';position:absolute;inset:0;margin:auto;width:7px;height:2px;background:#fff;border-radius:2px}
+#bulk-assign-btn{font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:600;padding:6px 12px;background:var(--accent);color:#1A1810;border:none;border-radius:7px;cursor:pointer;display:flex;align-items:center;gap:6px;position:relative}
+#bulk-cancel-btn{font-family:'DM Sans',sans-serif;font-size:14px;padding:5px 8px;background:transparent;color:var(--ink3);border:none;cursor:pointer;line-height:1}
+#bulk-cancel-btn:hover{color:var(--ink)}
+.bulk-bucket-popover{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:4px;width:max-content;min-width:100%;box-shadow:0 8px 24px rgba(0,0,0,0.4);display:none;flex-direction:column;z-index:501}
+.bulk-bucket-popover.open{display:flex}
+.bulk-popover-item{font-family:'DM Sans',sans-serif;font-size:13px;padding:7px 12px;border-radius:7px;cursor:pointer;color:var(--ink2);display:flex;align-items:center;gap:8px;border:none;background:none;text-align:left;width:100%}
+.bulk-popover-item:hover{background:var(--surface3);color:var(--ink)}
+#bulk-cancel-btn:hover{color:var(--ink)}
+/* bucket popover */
+.bulk-bucket-popover{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:4px;width:max-content;min-width:100%;box-shadow:0 8px 24px rgba(0,0,0,0.4);display:none;flex-direction:column;z-index:501}
+.bulk-bucket-popover.open{display:flex}
+.bulk-popover-item{font-family:'DM Sans',sans-serif;font-size:13px;padding:7px 12px;border-radius:7px;cursor:pointer;color:var(--ink2);display:flex;align-items:center;gap:8px;border:none;background:none;text-align:left;width:100%}
+.bulk-popover-item:hover{background:var(--surface3);color:var(--ink)}
 #bulk-cancel-btn:hover{color:var(--ink);background:var(--surface3)}
+
+/* ── FEEDBACK WIDGET ── */
+.feedback-widget{padding:12px 14px 14px;border-top:1px solid var(--border);margin-top:auto;flex-shrink:0}
+.feedback-prompt{display:flex;align-items:center;justify-content:space-between}
+.feedback-label{font-size:12px;color:var(--ink2);font-family:'DM Sans',sans-serif}
+.feedback-btns{display:flex;gap:4px}
+.feedback-thumb{background:none;border:1px solid var(--border2);border-radius:6px;padding:3px 7px;font-size:13px;cursor:pointer;transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),opacity 0.25s ease;line-height:1.4}
+#feedback-up:hover{transform:rotate(-15deg) scale(1.3)}
+#feedback-down:hover{transform:rotate(15deg) scale(1.3)}
+.feedback-thumb.active{border-color:var(--border2)}
+#feedback-up.active{transform:rotate(-15deg) scale(1.3)}
+#feedback-down.active{transform:rotate(15deg) scale(1.3)}
+.feedback-thumb.dimmed{opacity:0.25;transform:scale(0.85)}
+.feedback-form{display:flex;flex-direction:column;gap:8px;max-height:0;opacity:0;overflow:hidden;margin-top:0;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.35s ease,margin-top 0.4s ease}
+.feedback-form.open{max-height:120px;opacity:1;margin-top:10px}
+.feedback-txt{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:12px;padding:8px 10px;resize:none;outline:none;transition:border-color 0.15s}
+.feedback-txt:focus{border-color:var(--accent)}
+.feedback-actions{display:flex;gap:6px;justify-content:flex-end}
+.feedback-done{display:none;font-size:12px;color:var(--ink2);text-align:center;padding-top:4px;font-family:'DM Sans',sans-serif}
+.feedback-done.show{display:block}
 </style>
 
 <!-- PostHog Analytics -->
@@ -589,7 +625,25 @@ body:not(.light) #bulk-assign-btn{color:#0F0E0C}
       <button class="new-bucket-btn" id="new-bucket-btn"><i data-lucide="plus"></i></button>
     </div>
     <div class="bucket-list" id="bucket-list"></div>
-  </aside>
+  
+  <div class="feedback-widget" id="feedback-widget">
+    <div class="feedback-prompt" id="feedback-prompt">
+      <span class="feedback-label">How's it going?</span>
+      <div class="feedback-btns">
+        <button class="feedback-thumb" id="feedback-up" title="Good">👍</button>
+        <button class="feedback-thumb" id="feedback-down" title="Not great">👎</button>
+      </div>
+    </div>
+    <div class="feedback-form" id="feedback-form">
+      <textarea class="feedback-txt" id="feedback-txt" placeholder="Tell me more (optional)..." rows="3"></textarea>
+      <div class="feedback-actions">
+        <button class="btn secondary sm" id="feedback-skip">Skip</button>
+        <button class="btn primary sm" id="feedback-send">Send</button>
+      </div>
+    </div>
+    <div class="feedback-done" id="feedback-done">Thanks! 🙌</div>
+  </div>
+</aside>
   <main id="main"></main>
 </div>
 
@@ -1300,6 +1354,12 @@ function archiveCard(cardEl, onDone) {
 
 function render() {
   renderSidebar(); renderMain(); if (window.lucide) lucide.createIcons();
+  // Hide import btn when on Imported section with no posts
+  const importBtn = document.getElementById('import-btn');
+  if (importBtn) {
+    const hide = activeBucket === 'all' && posts.filter(p => !p.archived).length === 0;
+    importBtn.style.display = hide ? 'none' : '';
+  }
   const ob = document.getElementById('onboarding-overlay');
   if (ob) {
     const show = posts.length === 0 && activeBucket === 'all' && !searchQuery;
@@ -1742,19 +1802,12 @@ function updateBulkBar() {
   const bar = document.getElementById('bulk-bar');
   if (!bar) return;
   const allCards = document.querySelectorAll('#cards-wrap .card');
-  const saBtn = document.getElementById('bulk-select-all-btn');
-  const daBtn = document.getElementById('bulk-deselect-all-btn');
   const allSelected = selectedIds.size > 0 && selectedIds.size >= allCards.length;
-  if (saBtn) saBtn.style.display = allSelected ? 'none' : '';
-  if (daBtn) daBtn.style.display = allSelected ? '' : 'none';
+  const chk = document.getElementById('bulk-select-all-chk');
+  if (chk) { chk.checked = allSelected; chk.indeterminate = selectedIds.size > 0 && !allSelected; }
   if (selectMode) {
     bar.classList.add('show');
     document.getElementById('bulk-bar-count').textContent = selectedIds.size + ' selected';
-    // Populate bucket select
-    const sel = document.getElementById('bulk-bucket-sel');
-    sel.innerHTML = '<option value="">No category</option>' + buckets.map(b =>
-      `<option value="${b.id}">${b.emoji||''} ${b.name}</option>`
-    ).join('');
   } else {
     bar.classList.remove('show');
   }
@@ -1785,35 +1838,51 @@ document.addEventListener('click', e => {
   updateBulkBar();
 }, true);
 
-// Bulk assign
+// Bulk bar wiring
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('bulk-assign-btn') && (document.getElementById('bulk-assign-btn').onclick = () => {
-    const bucket = document.getElementById('bulk-bucket-sel').value || null;
-    selectedIds.forEach(id => {
-      const p = getPost(id);
-      if (p) p.bucket = bucket;
-    });
-    saveState();
-    exitSelectMode();
-    render();
+  const assignBtn = document.getElementById('bulk-assign-btn');
+  const popover   = document.getElementById('bulk-bucket-popover');
+  const cancelBtn = document.getElementById('bulk-cancel-btn');
+
+  // Assign button → open category popover
+  assignBtn && assignBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    popover.innerHTML = [
+      {id: '', emoji: '·', name: 'No category'},
+      ...buckets
+    ].map(b => `<button class="bulk-popover-item" data-bucketval="${b.id||''}">${b.emoji||''} ${b.name}</button>`).join('');
+    popover.classList.toggle('open');
   });
 
-  document.getElementById('bulk-cancel-btn') && (document.getElementById('bulk-cancel-btn').onclick = exitSelectMode);
+  // Popover item click
+  document.addEventListener('click', e => {
+    const item = e.target.closest('.bulk-popover-item');
+    if (item) {
+      const bucket = item.dataset.bucketval || null;
+      selectedIds.forEach(id => { const p = getPost(id); if (p) p.bucket = bucket; });
+      saveState(); exitSelectMode(); render();
+      return;
+    }
+    if (!e.target.closest('#bulk-assign-btn') && !e.target.closest('.bulk-bucket-popover')) {
+      popover && popover.classList.remove('open');
+    }
+  });
 
-  document.getElementById('bulk-select-all-btn') && (document.getElementById('bulk-select-all-btn').onclick = () => {
-    const cards = document.querySelectorAll('#cards-wrap .card');
-    cards.forEach(card => {
-      const id = card.dataset.id;
-      if (id) { selectedIds.add(id); card.classList.add('selected'); }
-    });
+  // Select all checkbox
+  const chk = document.getElementById('bulk-select-all-chk');
+  chk && chk.addEventListener('change', () => {
+    const allCards = document.querySelectorAll('#cards-wrap .card');
+    if (chk.checked) {
+      allCards.forEach(c => { c.classList.add('selected'); selectedIds.add(c.dataset.id); });
+    } else {
+      allCards.forEach(c => c.classList.remove('selected'));
+      selectedIds.clear();
+    }
     updateBulkBar();
   });
 
-  document.getElementById('bulk-deselect-all-btn') && (document.getElementById('bulk-deselect-all-btn').onclick = () => {
-    document.querySelectorAll('#cards-wrap .card.selected').forEach(c => c.classList.remove('selected'));
-    selectedIds.clear();
-    updateBulkBar();
-  });
+  // Cancel
+  cancelBtn && cancelBtn.addEventListener('click', exitSelectMode);
 });
 
 // Ctrl+A to select all
@@ -1830,6 +1899,58 @@ document.addEventListener('keydown', e => {
     updateBulkBar();
   }
 });
+
+// ── FEEDBACK WIDGET ──
+(function() {
+  let rating = null;
+
+  function setRating(r) {
+    rating = r;
+    document.getElementById('feedback-up').classList.toggle('active', r === 'up');
+    document.getElementById('feedback-down').classList.toggle('active', r === 'down');
+    document.getElementById('feedback-up').classList.toggle('dimmed', r === 'down');
+    document.getElementById('feedback-down').classList.toggle('dimmed', r === 'up');
+    // Fire immediately
+    posthog && posthog.capture('feedback_rating', { rating: r });
+    // Open text form
+    document.getElementById('feedback-form').classList.add('open');
+  }
+
+  function sendFeedback() {
+    const msg = document.getElementById('feedback-txt').value.trim();
+    if (msg) {
+      posthog && posthog.capture('feedback_message', { rating: rating, message: msg });
+    }
+    showDone();
+  }
+
+  function showDone() {
+    document.getElementById('feedback-prompt').style.display = 'none';
+    document.getElementById('feedback-form').classList.remove('open');
+    document.getElementById('feedback-done').classList.add('show');
+    // Reset after 3s
+    setTimeout(() => {
+      document.getElementById('feedback-done').classList.remove('show');
+      document.getElementById('feedback-prompt').style.display = '';
+      document.getElementById('feedback-form').classList.remove('open');
+      document.getElementById('feedback-up').classList.remove('active', 'dimmed');
+      document.getElementById('feedback-down').classList.remove('active', 'dimmed');
+      document.getElementById('feedback-txt').value = '';
+      rating = null;
+    }, 3000);
+  }
+
+  // Only show after 30s
+  document.getElementById('feedback-widget').style.display = 'none';
+  setTimeout(() => {
+    document.getElementById('feedback-widget').style.display = '';
+  }, 30000);
+
+  document.getElementById('feedback-up').addEventListener('click', () => setRating('up'));
+  document.getElementById('feedback-down').addEventListener('click', () => setRating('down'));
+  document.getElementById('feedback-send').addEventListener('click', sendFeedback);
+  document.getElementById('feedback-skip').addEventListener('click', showDone);
+})();
 </script>
 
 <div id="del-modal-overlay">
@@ -1884,12 +2005,14 @@ document.addEventListener('keydown', e => {
 
 <!-- BULK ACTION BAR -->
 <div id="bulk-bar">
+  <label class="bulk-sel-all-wrap" title="Select / deselect all">
+    <input type="checkbox" id="bulk-select-all-chk" class="bulk-sel-all-chk">
+  </label>
   <span id="bulk-bar-count">0 selected</span>
-  <button id="bulk-select-all-btn" style="font-family:'DM Sans',sans-serif;font-size:12px;padding:4px 10px;background:transparent;color:var(--ink3);border:1px solid var(--border2);border-radius:6px;cursor:pointer">Select all</button>
-  <button id="bulk-deselect-all-btn" style="font-family:'DM Sans',sans-serif;font-size:12px;padding:4px 10px;background:transparent;color:var(--ink3);border:1px solid var(--border2);border-radius:6px;cursor:pointer;display:none">Deselect all</button>
-  <select id="bulk-bucket-sel"></select>
-  <button id="bulk-assign-btn">Assign</button>
+  <span class="bulk-divider"></span>
+  <button id="bulk-assign-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Assign category</button>
   <button id="bulk-cancel-btn">✕</button>
+  <div id="bulk-bucket-popover" class="bulk-bucket-popover"></div>
 </div>
 </body>
 </html
