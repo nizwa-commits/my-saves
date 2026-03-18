@@ -22,18 +22,18 @@ No backend. No account. No cost. Everything runs in your browser.
 ```
 
 1. Install the Chrome extension
-2. Go to your LinkedIn saved posts and hit **Scrape All** → download the JSON
+2. Go to your LinkedIn saved posts and hit **Export All** → download the JSON
 3. Upload the JSON to My Saves
 4. Organise your posts into buckets, search, star, pin, archive
-5. Run **Export Latest** periodically to pull in new saves without duplicates
+5. Run the extension periodically → click **Export Latest** to pull in only new saves without duplicates
 
 ---
 
 ## Chrome Extension
 
-[![Available in the Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-blue?logo=google-chrome)](https://chromewebstore.google.com/detail/linkedin-saves-exporter/gjodnbfdffddoliaimeoaanjfldemnmn)
+[![Available in the Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-blue?logo=google-chrome)](https://chromewebstore.google.com/detail/linkedin-saves-exporter/gjodnbfdffddoliaimeoaanjfldemnmn){:target="_blank"}
 
-👉 **[Install from Chrome Web Store](https://chromewebstore.google.com/detail/linkedin-saves-exporter/gjodnbfdffddoliaimeoaanjfldemnmn)**
+👉 **[Install from Chrome Web Store ↗](https://chromewebstore.google.com/detail/linkedin-saves-exporter/gjodnbfdffddoliaimeoaanjfldemnmn)**
 
 ### Features
 
@@ -44,7 +44,7 @@ No backend. No account. No cost. Everything runs in your browser.
 | **Export JSON** | Downloads `linkedin-saved-posts.json` to your machine |
 | **Timeline Card** | Shows the newest and oldest post collected with a count in between |
 | **Anchor System** | Saves `posts[0]` after every export as the stop point for the next incremental run |
-| **Background Persistence** | Scrape state survives popup close mid-run via a service worker relay |
+| **Background Persistence** | Export state survives popup close mid-run via a service worker relay |
 
 ### JSON Output Format
 
@@ -61,7 +61,7 @@ Each post in the exported file follows this shape:
 }
 ```
 
-> `scrapeOrder` reflects DOM position top-to-bottom. `date` is always empty — LinkedIn does not expose save date in the DOM.
+> `scrapeOrder` is the field name in the JSON output reflecting DOM position top-to-bottom. `date` is always empty — LinkedIn does not expose save date in the DOM.
 
 ### Known Limitations
 
@@ -119,17 +119,6 @@ A single-file, zero-backend HTML app for importing, organising, and revisiting y
 - Fully mobile responsive — sidebar slides in/out
 - Onboarding screen for new users with step-by-step instructions
 - Fonts: **Instrument Serif** (logo) + **DM Sans** (UI)
-
-### Deploy
-
-The app is a single `index.html` file. Deploy it on GitHub Pages for free:
-
-1. Push `index.html` to a GitHub repository
-2. Go to **Settings → Pages**
-3. Set source to **Deploy from branch: main / root**
-4. Click **Save**
-
-Your app will be live at `https://<your-username>.github.io/<repo-name>` within a minute or two.
 
 ### App File Structure
 
