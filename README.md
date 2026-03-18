@@ -12,7 +12,7 @@ No backend. No account. No cost. Everything runs in your browser.
 ## How It Works
 
 ```
-LinkedIn Saved Posts
+  LinkedIn Saved Posts
         ↓
   Chrome Extension  ←  install once, run periodically
         ↓
