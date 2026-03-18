@@ -1702,6 +1702,21 @@ document.getElementById('theme-toggle').addEventListener('click', function() {
   });
 })();
 
+// Handle bucket dropdown item clicks at document level
+// (menu moves to body to escape sidebar overflow:hidden)
+document.addEventListener('click', e => {
+  const bact = e.target.closest('[data-bact]');
+  if (bact) {
+    e.stopPropagation();
+    document.querySelectorAll('.b-dropdown.open').forEach(m => m.classList.remove('open'));
+    handleBucketAction(bact.dataset.bact, bact.dataset.bid);
+    return;
+  }
+  if (!e.target.closest('.b-dropdown') && !e.target.closest('.b-ellipsis-btn')) {
+    document.querySelectorAll('.b-dropdown.open').forEach(m => m.classList.remove('open'));
+  }
+});
+
 // ── MULTI-SELECT ──
 let selectMode = false;
 let selectedIds = new Set();
