@@ -1589,14 +1589,12 @@ document.getElementById('file-input').addEventListener('change', e => {
       // Deduplicate against existing posts using canonical URLs
       const existingUrls = new Set(posts.map(p => canonUrl(p.url)));
       const existingActIds = new Set(posts.map(p => extractActivityId(p.url)).filter(Boolean));
-      const cutoff = lastImportDate;
       let added = 0;
       let skippedOld = 0;
       Object.values(byUrl).forEach((p, i) => {
         const actId = extractActivityId(p.url);
         if (existingUrls.has(p.url)) return;
         if (actId && existingActIds.has(actId)) return;
-        if (cutoff && p.date && p.date <= cutoff) { skippedOld++; return; }
         posts.unshift({
           id: 'imp-' + Date.now() + '-' + i,
           url: p.url, title: p.title, author: p.author,
@@ -1612,7 +1610,9 @@ document.getElementById('file-input').addEventListener('change', e => {
       lastImportDate = allDates[allDates.length - 1] || null;
       posthog && posthog.capture('saves_imported', { count: added, skipped: skippedOld });
       saveState(); render();
-      alert(`Imported ${added} new posts${skippedOld > 0 ? ` (skipped ${skippedOld} already-seen older posts)` : ''}.`);
+      if (added > 0) {
+        alert(`Imported ${added} new post${added===1?'':'s'}.`);
+      }
     } catch(err) { alert('Could not parse JSON file: ' + err.message); }
     e.target.value = '';
   };
