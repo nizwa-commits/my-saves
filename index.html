@@ -1022,14 +1022,14 @@ function renderMain() {
     ? `"${esc(searchQuery)}"`
     : activeBucket === 'all' ? `${importedCount} total`
     : isArchived ? `${bucketCount('_archived')} posts`
-    : unreadCount > 0 ? `${unreadCount} unread` : 'all read';
+    : unreadCount > 0 ? `${unreadCount} unread` : bucketCount(activeBucket) > 0 ? `${bucketCount(activeBucket)} saved` : '0 posts';
 
   mainEl.innerHTML = `
     <div class="main-toolbar">
       <div class="main-title-block">
         ${bkt?.icon ? `<i data-lucide="${bkt.icon}" class="title-icon"></i>` : (bkt?.emoji ? `<span class="title-emoji">${bkt.emoji}</span>` : '')}
         <div class="title-text-col">
-          <div class="main-title">${esc(bkt?.name||'Imported')}</div>
+          <div class="main-title">${searchQuery ? 'Search results' : esc(bkt?.name||'Imported')}</div>
           <div class="main-meta">${metaText}</div>
         </div>
       </div>
@@ -1043,7 +1043,7 @@ function renderMain() {
       </div>
     </div>
     <div class="main-content">${fp.length === 0
-      ? `<div class="empty"><div class="empty-ico">${bkt?.icon ? `<i data-lucide="${bkt.icon}"></i>` : (bkt?.emoji||'◈')}</div><div class="empty-h">${searchQuery?'No results':filterStatus==='done'?'No done posts':'Nothing here'}</div><div class="empty-sub">${searchQuery?`No posts match "${esc(searchQuery)}"`:activeBucket==='all'?'All posts categorised — great work! 🎉':filterStatus==='done'?'Mark posts as done within this bucket.':'Try a different filter or run AI Categorise.'}</div></div>`
+      ? `<div class="empty"><div class="empty-ico">${bkt?.icon ? `<i data-lucide="${bkt.icon}"></i>` : (bkt?.emoji||'◈')}</div><div class="empty-h">${searchQuery?'No results':filterStatus==='read'&&posts.filter(p=>!p.archived&&(activeBucket==='all'?true:activeBucket==='_starred'?p.starred:activeBucket==='_pinned'?p.pinned:p.bucket===activeBucket)).length>0?'All read':'Nothing here'}</div><div class="empty-sub">${searchQuery?`No posts match "${esc(searchQuery)}"`:filterStatus==='read'&&posts.filter(p=>!p.archived&&(activeBucket==='all'?true:activeBucket==='_starred'?p.starred:activeBucket==='_pinned'?p.pinned:p.bucket===activeBucket)).length>0?'You\'ve read everything in here 🎉':'Try importing more saves or changing the filter.'}</div></div>`
       : `<div class="cards-wrap" id="cards-wrap"></div>`
     }</div>`;
 
